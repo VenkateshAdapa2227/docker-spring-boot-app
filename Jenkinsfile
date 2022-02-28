@@ -20,21 +20,21 @@ pipeline{
     }
     stage('Push images to aws ecr'){
           steps {
-            withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-cred', url: 'http://349229500297.dkr.ecr.us-east-1.amazonaws.com/account-service') {
-             sh 'docker tag bank-service:latest 349229500297.dkr.ecr.us-east-1.amazonaws.com/bank-service'
-             sh 'docker push 349229500297.dkr.ecr.us-east-1.amazonaws.com/bank-service'
+            withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-cred', url: 'http://182355204495.dkr.ecr.us-west-2.amazonaws.com/account-service') {
+             sh 'docker tag bank-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/bank-service'
+             sh 'docker push 182355204495.dkr.ecr.us-west-2.amazonaws.com/bank-service'
 
-             sh 'docker tag branch-service:latest 349229500297.dkr.ecr.us-east-1.amazonaws.com/branch-service'
-             sh 'docker push 349229500297.dkr.ecr.us-east-1.amazonaws.com/branch-service'
+             sh 'docker tag branch-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/branch-service'
+             sh 'docker push 182355204495.dkr.ecr.us-west-2.amazonaws.com/branch-service'
 
-             sh 'docker tag customer-service:latest 349229500297.dkr.ecr.us-east-1.amazonaws.com/customer-service'
-             sh 'docker push 349229500297.dkr.ecr.us-east-1.amazonaws.com/customer-service'
+             sh 'docker tag customer-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/customer-service'
+             sh 'docker push 182355204495.dkr.ecr.us-west-2.amazonaws.com/customer-service'
 
-             sh 'docker tag account-service:latest 349229500297.dkr.ecr.us-east-1.amazonaws.com/account-service'
-             sh 'docker push 349229500297.dkr.ecr.us-east-1.amazonaws.com/account-service'
+             sh 'docker tag account-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/account-service'
+             sh 'docker push 182355204495.dkr.ecr.us-west-2.amazonaws.com/account-service'
 
-             sh 'docker tag transaction-service:latest 349229500297.dkr.ecr.us-east-1.amazonaws.com/transaction-service'
-             sh 'docker push 349229500297.dkr.ecr.us-east-1.amazonaws.com/transaction-service'
+             sh 'docker tag transaction-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/transaction-service'
+             sh 'docker push 182355204495.dkr.ecr.us-west-2.amazonaws.com/transaction-service'
             }
           }
     }
@@ -44,7 +44,7 @@ pipeline{
               checkout scm
              sh 'git checkout feature-1.1'
              sh 'export KUBECONFIG=~/.kube/config'
-             sh 'aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo'
+             sh 'aws eks --region us-west-2 update-kubeconfig --name terraform-eks-demo'
              sh 'kubectl apply -f deployment.yaml'
              sh 'kubectl apply -f service.yaml'
             }
