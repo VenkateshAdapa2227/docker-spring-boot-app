@@ -17,7 +17,7 @@ pipeline{
         sh 'echo whoami'
       }
     }
-    stage('Push images to aws ecr'){
+    stage('Push images to aws eks'){
           steps {
             withDockerRegistry(credentialsId: 'ecr:us-west-2:aws-cred', url: 'http://182355204495.dkr.ecr.us-west-2.amazonaws.com/account-service') {
              sh 'docker tag bank-service:latest 182355204495.dkr.ecr.us-west-2.amazonaws.com/bank-service'
@@ -37,7 +37,7 @@ pipeline{
             }
           }
     }
-        stage('Run docker images on ekss cluster') {
+        stage('Run docker images kubernetes cluster') {
           steps {
             node('eks'){
               checkout scm
