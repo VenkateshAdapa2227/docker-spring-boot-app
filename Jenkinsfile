@@ -39,7 +39,7 @@ pipeline{
     }
         stage('Run docker images on kubernetes cluster') {
           steps {
-            node('eks-master-node'){    
+               
               checkout scm
              sh 'git checkout feature-1.1'
              
@@ -48,7 +48,7 @@ pipeline{
              sh 'kubectl apply -f service.yaml'
             }
           }
-        }
+        
     
   }
 }
