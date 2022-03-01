@@ -37,7 +37,7 @@ pipeline{
             }
           }
     }
-        stage('Run docker containers kubernts cluster') {
+        stage('Run docker images on kubernets cluster') {
           steps {
             node('eks'){
               checkout scm
